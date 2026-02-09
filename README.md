@@ -1,17 +1,17 @@
 # Microwave-RF-Communication-Link-Design 📡
 
-This repository contains the design and analysis of a **Point-to-Point (P2P) Microwave Communication Link** operating at **23 GHz**. The project connects two strategic locations in Istanbul—**Kabataş High School (Europe)** and **Üsküdar Nakkaştepe (Asia)**—bridging the Bosphorus with a high-availability wireless link.
+This repository contains the design and analysis of a **Point-to-Point (P2P) Microwave Communication Link** operating in the **8 GHz** band. The project connects two strategic locations in Istanbul—**Kabataş High School (Europe)** and **Üsküdar Nakkaştepe (Asia)**—bridging the Bosphorus with a high-availability wireless link.
 
-The design includes comprehensive path analysis, link budget calculations, and equipment selection to achieve **99.999% availability** (Five Nines) under varying atmospheric conditions.
+The design utilizes **Space Diversity** to mitigate multipath fading and aims for an ultra-high availability target of **99.9999%** (approx. 5 seconds outage per year).
 
-## 🚀 Project Overview
+## Project Overview
 * **Link Topology:** Point-to-Point (Line-of-Sight).
 * **Locations:**
-  * **Site A:** Kabataş Erkek Lisesi (41°02'33.0"N, 29°01'18.0"E)
-  * **Site B:** Üsküdar Nakkaştepe (41°01'58.0"N, 29°02'21.0"E)
-* **Distance:** ~1.85 km.
-* **Frequency Band:** 23 GHz (K-Band).
-* **Objective:** To design a reliable RF link capable of high-speed data transmission with minimal outage probability.
+  * **Site A:** Kabataş Erkek Lisesi (Europe)
+  * **Site B:** Üsküdar Nakkaştepe (Asia)
+* **Frequency Band:** **8 GHz** (ITU-R F.386-9 Standard).
+* **Diversity Technique:** **Space Diversity** (Selected over Frequency Diversity for better gain and fade margin).
+* **Objective:** To design a carrier-grade RF link capable of uninterrupted data transmission across the Bosphorus Strait.
 
 ## Repository Contents
 
@@ -22,36 +22,32 @@ The design includes comprehensive path analysis, link budget calculations, and e
 
 ## Design Methodology & Parameters
 
-### 1. Path Analysis & Fresnel Zones
-* **Line of Sight (LOS):** Verified using elevation profiles (38m vs 69m AMSL).
-* **Fresnel Zone Clearance:** Calculated for the first Fresnel zone (F1) to ensure no obstruction from the Bosphorus strait or urban structures.
-  $$R_1 = 17.32 \sqrt{\frac{d_1 d_2}{f \cdot D}}$$
+### 1. Frequency & Channel Planning
+* **Operating Band:** **7.1 GHz - 8 GHz** range.
+* **Standard:** Compliance with **ITU-R F.386-9** channel arrangements.
+* **Selection Logic:** The 8 GHz band was chosen to balance path loss and rain attenuation suitable for the link distance and regional climate.
 
-### 2. Link Budget Calculation
-The link budget accounts for all gains and losses to determine the **Received Signal Level (RSL)**:
-* **Free Space Path Loss (FSPL):** Calculated for 23 GHz over 1.85 km.
-  $$FSPL = 92.45 + 20\log(d_{km}) + 20\log(f_{GHz})$$
-* **Atmospheric Attenuation:** Losses due to oxygen and water vapor absorption (ITU-R P.676).
-* **Rain Attenuation:** Critical for 23 GHz; calculated using ITU-R P.530 for Istanbul's rain zone (Zone K).
+### 2. Path Analysis
+* **Line of Sight (LOS):** Confirmed path clearance over the Bosphorus strait.
+* **Fresnel Zones:** Analysis ensures the first Fresnel zone is free from obstructions (sea surface reflections and maritime traffic).
 
-### 3. Equipment Selection
-* **Radio Unit:** Ericsson MINI-LINK 6363.
-* **Antenna:** High-Performance Parabolic Antenna (0.3m / 0.6m diameter).
-* **Modulation:** Adaptive modulation (QPSK to 4096-QAM) supported for capacity optimization.
+### 3. Diversity & Availability
+* **Space Diversity:** Implemented to counteract multipath fading, which is critical for water-crossing links.
+* **Target Availability:** **99.9999%** (Six Nines).
+* **Outage Tolerance:** Calculated to be approximately **5 seconds per year**.
 
 ## Key Results
 
 | Parameter | Value |
 | :--- | :--- |
-| **Operating Frequency** | 23 GHz |
-| **Path Distance** | 1.85 km |
-| **Antenna Gain** | ~38.5 dBi |
-| **Tx Power** | 22 dBm (Max) |
-| **Fade Margin** | > 30 dB |
-| **Availability Target** | 99.999% (approx. 5 mins outage/year) |
+| **Operating Frequency** | **8 GHz** |
+| **Antenna Configuration** | Space Diversity (Main + Diversity Antennas) |
+| **Availability Target** | **99.9999%** |
+| **Fade Margin** | Optimized for >40 dB (with Diversity) |
+| **Rain Zone** | ITU-R Zone K (Istanbul) |
 
-## Site Survey & Map
-The link crosses the Bosphorus Strait, requiring precise alignment to mitigate reflection from the water surface and ensuring clearance from maritime traffic.
+## Site Survey
+The link crosses the Bosphorus Strait, requiring precise antenna alignment and height planning to mitigate **surface reflections** (tidal effects) and ensure clearance for large vessels passing through the strait.
 
 ---
-*This project was conducted as part of the Communication Electronics & Microwave Link Design course at Istanbul Technical University.*
+*This project was conducted as part of the **EHB 473 Microwave and RF Communication** course at Istanbul Technical University.*
